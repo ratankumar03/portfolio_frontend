@@ -1,14 +1,12 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { FaBars, FaTimes, FaEdit, FaSave, FaSignOutAlt, FaUserShield } from 'react-icons/fa';
+import { FaBars, FaTimes, FaEdit, FaSave, FaSignOutAlt } from 'react-icons/fa';
 import ThemeToggleNav from './ThemeToggleNav';
 import { useAdmin } from '../context/AdminContext';
-import AdminLogin from './AdminLogin';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [showAdminLogin, setShowAdminLogin] = useState(false);
   const location = useLocation();
   const { isAdmin, isEditMode, toggleEditMode, logout } = useAdmin();
 
@@ -86,7 +84,7 @@ const Navbar = () => {
             ))}
 
             {/* Admin Controls - Desktop */}
-            {isAdmin ? (
+            {isAdmin && (
               <>
                 <button
                   onClick={toggleEditMode}
@@ -113,13 +111,6 @@ const Navbar = () => {
                   <FaSignOutAlt /> Logout
                 </button>
               </>
-            ) : (
-              <button
-                onClick={() => setShowAdminLogin(true)}
-                className="ml-2 px-4 py-2 bg-purple-500/20 text-purple-400 border border-purple-500/50 rounded-lg hover:bg-purple-500/30 flex items-center gap-2 text-sm font-medium transition-all duration-300"
-              >
-                <FaUserShield /> Admin
-              </button>
             )}
 
             {/* Theme Toggle for Desktop */}
@@ -162,7 +153,7 @@ const Navbar = () => {
           ))}
 
           {/* Admin Controls - Mobile */}
-          {isAdmin ? (
+          {isAdmin && (
             <div className="px-2 pt-2 border-t border-purple-500/20 space-y-2">
               <button
                 onClick={() => {
@@ -195,24 +186,9 @@ const Navbar = () => {
                 <FaSignOutAlt /> Logout
               </button>
             </div>
-          ) : (
-            <div className="px-2 pt-2 border-t border-purple-500/20">
-              <button
-                onClick={() => {
-                  setShowAdminLogin(true);
-                  closeMenu();
-                }}
-                className="w-full px-3 py-2 bg-purple-500/20 text-purple-400 border border-purple-500/50 rounded-md hover:bg-purple-500/30 flex items-center gap-2 text-sm font-medium transition-all duration-300"
-              >
-                <FaUserShield /> Admin Login
-              </button>
-            </div>
           )}
         </div>
       </div>
-
-      {/* Admin Login Modal */}
-      <AdminLogin isOpen={showAdminLogin} onClose={() => setShowAdminLogin(false)} />
     </nav>
   );
 };

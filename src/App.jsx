@@ -20,6 +20,9 @@ import axios from 'axios';
 
 // Get API base URL from environment variable
 const API_BASE_URL = import.meta.env.VITE_API_URL || '';
+if (API_BASE_URL) {
+  axios.defaults.baseURL = API_BASE_URL;
+}
 
 function App() {
   const [portfolioData, setPortfolioData] = useState(null);

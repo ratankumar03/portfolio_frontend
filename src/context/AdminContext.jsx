@@ -11,20 +11,9 @@ export const useAdmin = () => {
 };
 
 export const AdminProvider = ({ children }) => {
-  const [isAdmin, setIsAdmin] = useState(false);
-  const [adminToken, setAdminToken] = useState(null);
+  const [isAdmin, setIsAdmin] = useState(() => localStorage.getItem('isAdmin') === 'true');
+  const [adminToken, setAdminToken] = useState(() => localStorage.getItem('adminToken'));
   const [isEditMode, setIsEditMode] = useState(false);
-
-  useEffect(() => {
-    // Check if admin is logged in
-    const token = localStorage.getItem('adminToken');
-    const adminStatus = localStorage.getItem('isAdmin');
-
-    if (token && adminStatus === 'true') {
-      setIsAdmin(true);
-      setAdminToken(token);
-    }
-  }, []);
 
   const login = (token) => {
     localStorage.setItem('adminToken', token);

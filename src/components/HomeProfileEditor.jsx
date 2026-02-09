@@ -179,7 +179,7 @@ const HomeProfileEditor = ({ homeData, onSave, onClose }) => {
                   style={{ borderRadius: `${profile.borderRadius || 9999}px` }}
                 >
                   <img
-                    src={profile.image || '/assets/{images,icons}/ratan_old.jpg'}
+                    src={profile.image || '/assets/{images,icons}/1000287235.jpg'}
                     alt="Profile"
                     className="w-full h-full object-cover"
                   />

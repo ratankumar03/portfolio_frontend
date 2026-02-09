@@ -45,7 +45,7 @@ const Home = ({ data, coreExpertise }) => {
       glow: false
     },
     profile: {
-      image: '/assets/{images,icons}/ratan_old.jpg',
+      image: '/assets/{images,icons}/1000287235.jpg',
       size: 320,
       borderRadius: 9999,
       borderWidth: 4,
